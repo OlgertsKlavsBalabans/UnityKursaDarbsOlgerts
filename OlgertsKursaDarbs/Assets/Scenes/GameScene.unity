@@ -408,7 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   roatationSpeed: 500
-  jumpHeight: 50
+  jumpHeight: 5
 --- !u!143 &1662733855
 CharacterController:
   m_ObjectHideFlags: 0
