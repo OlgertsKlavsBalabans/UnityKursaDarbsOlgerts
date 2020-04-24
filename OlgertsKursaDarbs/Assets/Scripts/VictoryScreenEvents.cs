@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 namespace Via.olgerts.kursadarbs
 {
-    public class MainMenu : MonoBehaviour
+    public class VictoryScreenEvents : MonoBehaviour
     {
-        public void startGame()
+        public void goToMainMenu ()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1f;
         }
-        
     }
 }
