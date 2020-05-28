@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NoiseLevelController : MonoBehaviour
 {
     [SerializeField] float decaySpeed = 10f;
-    [System.NonSerialized]public float noiseLevel = 0;
+    [System.NonSerialized]public float noiseLevel = 0.01f;
     private float oldWidth;
     private float newWidth;
     private RectTransform rTransform;

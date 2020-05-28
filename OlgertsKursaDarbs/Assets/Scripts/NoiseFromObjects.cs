@@ -6,6 +6,7 @@ using UnityEngine;
 public class NoiseFromObjects : MonoBehaviour
 {
     GameObject noiseBar;
+    [SerializeField] int noiseMultiplier = 2;
     float createdNoise;
     private void Start()
     {
@@ -18,7 +19,7 @@ public class NoiseFromObjects : MonoBehaviour
         if (createdNoise > 1)
         {
             
-            noiseBar.GetComponent<NoiseLevelController>().noiseLevel += createdNoise;
+            noiseBar.GetComponent<NoiseLevelController>().noiseLevel += createdNoise*noiseMultiplier;
         }
         
     }
