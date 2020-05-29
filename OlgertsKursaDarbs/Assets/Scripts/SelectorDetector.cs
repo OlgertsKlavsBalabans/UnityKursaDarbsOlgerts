@@ -5,8 +5,8 @@ using UnityEngine;
 public class SelectorDetector : MonoBehaviour
 {
     // Start is called before the first frame update
-    private bool isColissionWithDoor = false;
     private Animator anim;
+    private bool animationPlaying = false;
     void Start()
     {
   
@@ -19,7 +19,7 @@ public class SelectorDetector : MonoBehaviour
         
         if (other.tag == "Door")
         {
-            anim = other.GetComponent<Animator>();
+            anim = other.GetComponentInParent<Animator>();
             Debug.Log("COLLISION");
         }
     }
@@ -27,15 +27,26 @@ public class SelectorDetector : MonoBehaviour
     {
         if (other.tag == "Door")
         {
-            if (Input.GetKeyDown(KeyCode.E))
+
+            if ((Input.GetKeyDown(KeyCode.E))&&(animationPlaying == false))
             {
                 anim.Play("TriggerAnim");
-
                 bool animatorBool = anim.GetBool("DoorClosed");
-                
                 anim.SetBool("DoorClosed", !animatorBool);
+
+                float animLength = anim.GetCurrentAnimatorStateInfo(0).length;
+                StartCoroutine( waitForAnimFinish(animLength));
             }
         }
+    }
+
+    private IEnumerator waitForAnimFinish(float animLength)
+    {
+
+        animationPlaying = true;
+        yield return new WaitForSeconds(animLength);
+        animationPlaying = false;
+
     }
 
 

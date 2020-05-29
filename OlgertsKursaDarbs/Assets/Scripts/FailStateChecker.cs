@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FailStateChecker : MonoBehaviour
 {
-
+    [SerializeField] GameObject loosePopup;
     GameObject noiseBar;
+    private bool playerLost = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +16,14 @@ public class FailStateChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( noiseBar.GetComponent<NoiseLevelController>().noiseLevel >= 10)
+        if(( noiseBar.GetComponent<NoiseLevelController>().noiseLevel >= 10)&&(playerLost == false))
         {
-            Debug.Log("LOOSE");
+            playerLost = true;
+
+            loosePopup.active = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
         }
     }
 }
