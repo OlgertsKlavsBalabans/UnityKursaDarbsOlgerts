@@ -7,9 +7,11 @@ public class SelectorDetector : MonoBehaviour
     // Start is called before the first frame update
     private Animator anim;
     private bool animationPlaying = false;
+
+    private AudioSource doorCreak;
     void Start()
     {
-  
+        doorCreak = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,8 @@ public class SelectorDetector : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.E))&&(animationPlaying == false))
             {
                 anim.Play("TriggerAnim");
+                doorCreak.PlayOneShot(doorCreak.clip);
+
                 bool animatorBool = anim.GetBool("DoorClosed");
                 anim.SetBool("DoorClosed", !animatorBool);
 

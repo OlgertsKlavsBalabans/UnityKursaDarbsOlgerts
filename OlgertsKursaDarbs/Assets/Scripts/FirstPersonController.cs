@@ -14,6 +14,7 @@ namespace Via.olgerts.kursadarbs
 
         [SerializeField] float jumpHeight = 5f;
 
+        [SerializeField] private AudioSource footsteps;
         private Vector3 motion = Vector3.zero;
         CharacterController _characterController;
         Camera _camera;
@@ -26,6 +27,8 @@ namespace Via.olgerts.kursadarbs
         {
             _characterController = GetComponent<CharacterController>();
             _camera = GetComponentInChildren<Camera>();
+
+            
 
             pitch = transform.localEulerAngles.x;
 
@@ -48,6 +51,19 @@ namespace Via.olgerts.kursadarbs
        
         private void applyMotion ()
         {
+            if ((motion.x + motion.z ) !=0)
+            {
+                if (footsteps.isPlaying == false)
+                {
+                    footsteps.PlayOneShot(footsteps.clip);
+                    Debug.Log("PlayFooot");
+                }
+                
+            }
+            else
+            {
+                footsteps.Stop();
+            }
             _characterController.Move(motion * Time.deltaTime);
         }
         private void addMotionWalk()

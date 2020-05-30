@@ -5,6 +5,8 @@ using UnityEngine;
 public class ObjectPushController : MonoBehaviour
 {
     [SerializeField] float pushPower = 2f;
+
+    [SerializeField] AudioSource brushSound;
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody hitBody = hit.collider.attachedRigidbody;
@@ -20,7 +22,12 @@ public class ObjectPushController : MonoBehaviour
         }
 
         //After all checks apply the force
-
+        brushSound.volume = pushVector.magnitude * 0.1f;
+        if (brushSound.isPlaying == false)
+        {
+            brushSound.PlayOneShot(brushSound.clip);
+        }
+        
         hitBody.velocity = pushVector * pushPower;
 
     }
