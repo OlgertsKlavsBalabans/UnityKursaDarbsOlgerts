@@ -51,7 +51,7 @@ namespace Via.olgerts.kursadarbs
        
         private void applyMotion ()
         {
-            if ((motion.x + motion.z ) !=0)
+            if (((motion.x + motion.z ) !=0)&&(motion.y <0.1 && motion.y >-0.2))
             {
                 if (footsteps.isPlaying == false)
                 {
@@ -62,6 +62,7 @@ namespace Via.olgerts.kursadarbs
             }
             else
             {
+                Debug.Log(motion.y);
                 footsteps.Stop();
             }
             _characterController.Move(motion * Time.deltaTime);

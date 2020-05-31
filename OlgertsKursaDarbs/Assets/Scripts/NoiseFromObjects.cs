@@ -6,7 +6,7 @@ using UnityEngine;
 public class NoiseFromObjects : MonoBehaviour
 {
     GameObject noiseBar;
-    [SerializeField] int noiseMultiplier = 2;
+    [SerializeField] int noiseMultiplier = 4;
     private AudioSource breakSound;
     float createdNoise;
     private void Start()
